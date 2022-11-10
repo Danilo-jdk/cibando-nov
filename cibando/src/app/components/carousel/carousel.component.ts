@@ -1,11 +1,11 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-carousel',
   templateUrl: './carousel.component.html',
   styleUrls: ['./carousel.component.scss']
 })
-export class CarouselComponent implements OnInit, OnDestroy{
+export class CarouselComponent implements OnInit{
   images = [
     {id: 1,
     label: 'Spaghetti al sugo'},
@@ -18,14 +18,9 @@ export class CarouselComponent implements OnInit, OnDestroy{
   percorso = '../assets/images/carousel-';
 
   constructor() {
-    console.log('qui siamo nel costruttore')
+
   }
 
   ngOnInit(): void {
-    console.log('qui siamo nel onInit')
-  }
-
-  ngOnDestroy(): void {
-    console.log('sei uscito dal componente')
   }
 }
