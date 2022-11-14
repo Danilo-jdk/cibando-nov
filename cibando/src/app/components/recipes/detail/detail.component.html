@@ -9,11 +9,15 @@
     </div>
     <div class="row">
       <h4 class="difficolta-title">Difficoltà: </h4>
-
+      <div class="row">
+        <img [src]="percorsoDifficolta+ricetta?.difficulty + '.png'" class="difficolta" alt="difficolta">
+      </div>
     </div>
-    <div class="row date">Ricetta pubblicata il {{ ricetta.date }}</div>
+    <div class="row date">Ricetta pubblicata il {{ ricetta.date | date }}</div>
   </div>
 </div>
 <div *ngIf="!ricetta">
-  <h4>Spiacenti ricetta non trovata</h4>
+  <div class="not-found">
+    <h4>Spiacenti ricetta non trovata</h4>
+  </div>
 </div>

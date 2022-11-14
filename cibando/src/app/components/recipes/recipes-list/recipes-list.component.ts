@@ -11,6 +11,7 @@ import { RecipeService } from 'src/app/services/recipe.service';
 export class RecipesListComponent implements OnInit {
 
   ricette: Recipe[] = [];
+  titoloRicevuto: string;
 
   constructor(private recipeService: RecipeService) { }
 
@@ -24,5 +25,10 @@ export class RecipesListComponent implements OnInit {
       }
     })
   }
+
+  riceviTitolo(e: any){
+    this.titoloRicevuto = e;
+  }
+
 
 }

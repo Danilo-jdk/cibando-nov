@@ -11,6 +11,7 @@ import { RecipeService } from 'src/app/services/recipe.service';
 export class DetailComponent implements OnInit {
 
   ricetta: Recipe;
+  percorsoDifficolta = "../../../../assets/images/difficolta-";
 
   constructor(
     private recipeService: RecipeService,
@@ -39,6 +40,7 @@ export class DetailComponent implements OnInit {
   onGetRecipe2(): void {
     this.activatedRoute.params.subscribe((urlParams) => {
       const id = urlParams['_id'];
+
       const idN = Number(id);
       if (idN) {
         this.recipeService.getRecipe(idN).subscribe(res => this.ricetta = res)
