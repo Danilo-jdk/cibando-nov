@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PasswordModule } from "primeng/password";
 import { DividerModule } from "primeng/divider";
 import {DropdownModule} from 'primeng/dropdown';
+import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
@@ -19,6 +20,7 @@ import { RecipeCardComponent } from './shared/recipe-card/recipe-card.component'
 import { DetailComponent } from './components/recipes/detail/detail.component';
 import { RecipesListComponent } from './components/recipes/recipes-list/recipes-list.component';
 import { RegistrationComponent } from './components/user/registration/registration.component';
+import { ChangeColorDirective } from './directives/change-color.directive';
 
 
 
@@ -33,7 +35,8 @@ import { RegistrationComponent } from './components/user/registration/registrati
     RecipeCardComponent,
     DetailComponent,
     RecipesListComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    ChangeColorDirective,
   ],
   imports: [
     BrowserModule,
@@ -45,7 +48,8 @@ import { RegistrationComponent } from './components/user/registration/registrati
     PasswordModule,
     DividerModule,
     BrowserAnimationsModule,
-    DropdownModule
+    DropdownModule,
+    NgbCollapseModule
   ],
   providers: [],
   bootstrap: [AppComponent]

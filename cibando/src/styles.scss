@@ -7,6 +7,10 @@
 body {
   font-family: 'Montserrat', sans-serif;
 }
+#super-contenitore {
+  max-width: 1400px!important;
+  margin: auto;
+}
 #main-container {
   padding: 15px;
 
@@ -79,5 +83,38 @@ ngb-carousel.carousel.slide {
 .p-password-input {
   width: 100%!important;
 }
+
+.page-link {
+  color: #8e210b!important;
+
+  :focus {
+    outline: 0;
+    box-shadow: none!important;
+  }
+}
+
+
+.page-link.active, .active > .page-link {
+  z-index: 3;
+  color: #ffffff!important;
+  background-color: #8e210b!important;
+  border-color: #8e210b!important;
+}
+
+ngb-pagination {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.navbar-expand-lg .navbar-collapse {
+  justify-content: space-between!important;
+}
+
+.navbar-toggler {
+  margin-right: 20px;
+}
+
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';

@@ -1,6 +1,6 @@
-import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Recipe } from 'src/app/models/recipe.model';
+import { RecipeService } from 'src/app/services/recipe.service';
 
 @Component({
   selector: 'app-recipe-card',
@@ -8,17 +8,36 @@ import { Recipe } from 'src/app/models/recipe.model';
   styleUrls: ['./recipe-card.component.scss']
 })
 export class RecipeCardComponent implements OnInit {
-  percorsoDifficolta = "../../../../assets/images/difficolta-";
-  cliccato = false;
-
-  @Input() recipes: Recipe[];
-
+  @Input() pag: string;
   @Output() messaggio = new EventEmitter();
 
-  constructor() { }
+  percorsoDifficolta = "../../../../assets/images/difficolta-";
+  cliccato = false;
+  ricette: Recipe[];
+  page = 1;
+  ricettePerPagina = 4;
+  pagingNumber = 0;
+
+
+  constructor(private recipeService: RecipeService) { }
 
   ngOnInit(): void {
+    this.recipeService.getRecipes().subscribe({
+      next: (res) => {
+        this.ricette = res;
+        if(this.pag == 'home'){
+          this.ricette = this.ricette.sort((a,b) => b._id - a._id).slice(0,4);
+        } else {
+          this.ricette = this.ricette.sort((a,b) => b._id - a._id);
+        }
 
+      },
+      error: (e) => {
+        console.error(e)
+      }
+    })
+
+    this.pagine();
   }
 
   inviaTitolo(titolo: string){
@@ -29,10 +48,18 @@ export class RecipeCardComponent implements OnInit {
       this.messaggio.emit('');
       this.cliccato = false;
     }
-
     // oppure con ternario
    // this.cliccato ? (this.messaggio.emit(''), this.cliccato = false) : (this.messaggio.emit(titolo), this.cliccato = true);
   }
 
+    pagine(){
+      let tot;
+      if(this.ricette){
+        tot = this.ricette.length
+      }
 
+      this.page = 1;
+      this.pagingNumber = 0;
+      this.pagingNumber = Math.ceil(this.ricette.length/ this.ricettePerPagina / 4);
+    }
 }

@@ -1,20 +1,34 @@
 <div class="container-cards">
-  <div class="card" *ngFor="let recipe of recipes">
-    <div class="card-image" [ngStyle]="{'background-image': 'url('+ recipe.image + ')'}" (click)="inviaTitolo(recipe.title)"></div>
+<div class="container-pagination" *ngIf="pag != 'home'">
+  <div>
+    <strong>{{ricettePerPagina}}</strong> Ricette / su un totale di <strong>{{ricette.length}}</strong> ricette <br />pagina corrente <strong>{{page}}</strong>
+  </div>
+  <ngb-pagination [collectionSize]="ricette.length * 2 + (ricettePerPagina * 2)" [(page)]="page" aria-label="Default pagination">
+  </ngb-pagination>
+</div>
+
+  <div class="card" *ngFor="let ricetta of ricette | slice: (page * ricettePerPagina) - ricettePerPagina : page * ricettePerPagina">
+    <div class="card-image" [ngStyle]="{'background-image': 'url('+ ricetta.image + ')'}" (click)="inviaTitolo(ricetta.title)"></div>
     <div class="card-body">
-      <h5 class="card-title">{{recipe.title}}</h5>
-      <p class="card-text">{{recipe.description | slice: 0:250}}...</p>
+      <h5 class="card-title">{{ricetta.title}}</h5>
+      <p class="card-text">{{ricetta.description | slice: 0:250}}...</p>
       <div class="row">
         <h4 class="difficolta-title">Difficoltà: </h4>
         <div class="row">
-          <img [src]="percorsoDifficolta+recipe?.difficulty + '.png'" class="difficolta" alt="difficolta">
+          <img [src]="percorsoDifficolta+ricetta?.difficulty + '.png'" class="difficolta" alt="difficolta">
         </div>
       </div>
       <div class="visualizza">
-        <a class="btn btn-primary" routerLink="/ricette/dettaglio/{{recipe.title}}/{{recipe._id}}">Visualizza</a>
+        <a class="btn btn-primary" routerLink="/ricette/dettaglio/{{ricetta.title}}/{{ricetta._id}}">Visualizza</a>
         <!-- <a class="btn btn-primary" [routerLink]="'dettaglio/' + recipe.title +'/'+ recipe._id">Dettaglio</a> -->
       </div>
 
     </div>
   </div>
+
+  <div class="container-pagination" *ngIf="pag != 'home'">
+    <ngb-pagination [collectionSize]="ricette.length * 2 + (ricettePerPagina * 2)" [(page)]="page" aria-label="Default pagination">
+    </ngb-pagination>
+  </div>
+
 </div>
