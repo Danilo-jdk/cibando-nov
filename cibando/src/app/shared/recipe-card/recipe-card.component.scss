@@ -1,8 +1,10 @@
 
 .container-cards {
-  display: block;
   margin-bottom: 20px;
-  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
 
   .card {
     width: 23%;
@@ -53,7 +55,7 @@
 
     a.btn.btn-primary {
       width: 100%;
-    }
+  }
   }
 
 }

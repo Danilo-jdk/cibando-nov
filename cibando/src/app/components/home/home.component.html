@@ -15,3 +15,20 @@
   <app-recipe-card [recipes]="ricette"></app-recipe-card>
  </div>
 </div>
+
+
+
+
+<!-- MODALE DELLA REGISTRAZIONE -->
+<ng-template [ngIf]="nome">
+  <div id="contenitore-globale">
+    <div id="dati-utente">
+      <h2>Grazie {{nome}} per esserti registrato, ecco il riepilogo dei tuoi dati:</h2>
+      <ul>
+        <li>Nome: <strong>{{nome}}</strong></li>
+        <li>Email: <strong>{{email}}</strong></li>
+      </ul>
+      <button class="btn btn-primary" (click)="closeModal()">CHIUDI</button>
+    </div>
+  </div>
+</ng-template>

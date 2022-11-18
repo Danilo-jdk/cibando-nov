@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Recipe } from 'src/app/models/recipe.model';
 import { RecipeService } from 'src/app/services/recipe.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +12,10 @@ export class HomeComponent implements OnInit, OnDestroy{
   ricette: Recipe[] = [];
   evidenziato = false;
 
-  constructor(private recipeService: RecipeService) { }
+  nome: string | null | undefined;
+  email: string;
+
+  constructor(private recipeService: RecipeService, private userService: UserService) { }
 
   ngOnInit(): void {
     this.recipeService.getRecipes().subscribe({
@@ -23,8 +27,34 @@ export class HomeComponent implements OnInit, OnDestroy{
         console.error(e)
       }
     })
+
+    this.riceviDatiUtente()
+
+    console.log('nome: ' + this.nome);
   }
 
+  riceviDatiUtente(){
+    // recupero i dati dal Subject e li immagazzino nelle localStorage
+    this.userService.datiUtente.subscribe((res: any) => {
+      // localStorage.setItem('nome', res.nome);
+      // localStorage.setItem('email', res.email)
+      this.nome = res.nome;
+      this.email = res.email;
+    });
+
+    // if(localStorage.getItem('nome')){
+    //   this.nome = localStorage.getItem('nome');
+    //   this.email = localStorage.getItem('email')
+    // }
+  }
+
+  closeModal(){
+    // localStorage.removeItem('nome');
+    // localStorage.removeItem('email');
+    // localStorage.clear();
+    this.nome = '';
+    this.email = '';
+  }
 
   onEvidenziazione(){
     this.evidenziato = !this.evidenziato;

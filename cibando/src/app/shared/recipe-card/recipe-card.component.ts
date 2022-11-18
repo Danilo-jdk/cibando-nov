@@ -30,6 +30,8 @@ export class RecipeCardComponent implements OnInit {
       this.cliccato = false;
     }
 
+    // oppure con ternario
+   // this.cliccato ? (this.messaggio.emit(''), this.cliccato = false) : (this.messaggio.emit(titolo), this.cliccato = true);
   }
 
 

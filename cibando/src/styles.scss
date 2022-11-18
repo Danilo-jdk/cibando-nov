@@ -1,5 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 @import "../node_modules/bootstrap/dist/css/bootstrap.css";
+@import "../node_modules/primeicons/primeicons.css";
+@import "../node_modules/primeng/resources/themes/saga-blue/theme.css";
+@import "../node_modules/primeng/resources/primeng.min.css";
+
 body {
   font-family: 'Montserrat', sans-serif;
 }
@@ -21,6 +25,13 @@ footer {
   height: 100px;
   width: 100%;
   background-color: #8e210b!important;
+  position: relative;
+  bottom: 0px
+}
+
+.btn-primary {
+  background-color: #8e210b!important;
+  border: none!important;
 }
 // INIZIO stili per BootStrap Carousel
 ngb-carousel.carousel.slide {
@@ -59,5 +70,14 @@ ngb-carousel.carousel.slide {
 }
 // FINE stili per BootStrap Carousel
 
+.p-password {
+  display: block!important;
+}
+.p-inputtext {
+  width: 100%!important;
+}
+.p-password-input {
+  width: 100%!important;
+}
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
