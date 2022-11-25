@@ -9,6 +9,10 @@ import { PasswordModule } from "primeng/password";
 import { DividerModule } from "primeng/divider";
 import {DropdownModule} from 'primeng/dropdown';
 import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
+import {PaginatorModule} from 'primeng/paginator';
+import { HttpClientModule } from '@angular/common/http';
+import {ToastModule} from 'primeng/toast';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 import { AppComponent } from './app.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
@@ -21,6 +25,13 @@ import { DetailComponent } from './components/recipes/detail/detail.component';
 import { RecipesListComponent } from './components/recipes/recipes-list/recipes-list.component';
 import { RegistrationComponent } from './components/user/registration/registration.component';
 import { ChangeColorDirective } from './directives/change-color.directive';
+import { EsempioComponent } from './components/esempio/esempio.component';
+import { LoginComponent } from './components/user/login/login.component';
+import { MessageService } from 'primeng/api';
+import { ProfileComponent } from './components/user/profile/profile.component';
+import { VideoComponent } from './components/video/video.component';
+import { NuovaRicettaComponent } from './components/recipes/nuova-ricetta/nuova-ricetta.component';
+import { ResultComponent } from './components/recipes/result/result.component';
 
 
 
@@ -37,6 +48,12 @@ import { ChangeColorDirective } from './directives/change-color.directive';
     RecipesListComponent,
     RegistrationComponent,
     ChangeColorDirective,
+    EsempioComponent,
+    LoginComponent,
+    ProfileComponent,
+    VideoComponent,
+    NuovaRicettaComponent,
+    ResultComponent
   ],
   imports: [
     BrowserModule,
@@ -49,9 +66,13 @@ import { ChangeColorDirective } from './directives/change-color.directive';
     DividerModule,
     BrowserAnimationsModule,
     DropdownModule,
-    NgbCollapseModule
+    NgbCollapseModule,
+    HttpClientModule,
+    PaginatorModule,
+    ToastModule,
+    CKEditorModule
   ],
-  providers: [],
+  providers: [ MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -14,7 +14,7 @@ export class RegistrationComponent implements OnInit {
 regex = /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){8,16}$/;
 
   form = new FormGroup({
-    nome: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    name: new FormControl('', [Validators.required, Validators.minLength(3)]),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.pattern(this.regex), Validators.required]),
     ripetiPassword: new FormControl('', [Validators.required]),
@@ -41,9 +41,14 @@ regex = /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){8,16}$/;
   // }
 
   onSubmit(){
-    console.log(this.form.value);
-    const utente = {nome: this.form.value.nome, email: this.form.value.email};
+    //console.log(this.form.value);
+    const utente = {nome: this.form.value.name, email: this.form.value.email};
     this.userService.datiUtente.next(utente);
+    this.userService.nuovoUtente(this.form.value).subscribe({
+      next: (res) =>{
+        console.log(res)},
+      error: (err) => console.log(err)
+    })
     this.router.navigate(['home']);
   }
 }

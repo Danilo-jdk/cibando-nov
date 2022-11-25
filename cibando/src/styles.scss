@@ -25,12 +25,23 @@ body {
   width: 540px;
 }
 
+// footer {
+//   height: 100px;
+//   width: 100%;
+//   background-color: #8e210b!important;
+//   position: relative;
+//   bottom: 0px
+// }
+
 footer {
   height: 100px;
   width: 100%;
-  background-color: #8e210b!important;
-  position: relative;
-  bottom: 0px
+  background-color: #8e210b !important;
+  /* position: relative; */
+  /* bottom: 0px; */
+  /* top: 70%; */
+  display: flex;
+  align-items: flex-end;
 }
 
 .btn-primary {
@@ -116,5 +127,10 @@ ngb-pagination {
   margin-right: 20px;
 }
 
+
+.description .ck-editor__editable {
+  min-height: 200px!important;
+  max-height: 200px!important;
+}
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';

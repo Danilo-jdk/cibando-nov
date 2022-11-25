@@ -76,15 +76,15 @@
             <div class="col-5">
               <p class="text-center h1 fw-bold mb-5 mx-md-4 mt-4">Registrati</p>
               <form class="mx-md-4" [formGroup]="form" (ngSubmit)="onSubmit()">
-                <div class="d-flex flex-row align-items-center mb-4">
+                <div class="d-flex flex-row align-items-center mb-4" >
                   <div class="form-outline flex-fill mb-0">
-                    <input type="text" id="name" class="form-control" formControlName="nome"  appChangeColor />
+                    <input type="text" id="name" class="form-control" formControlName="name" appChangeColor/>
                     <label class="form-label" for="name">Il tuo nome</label>
-                    <p class="help is-danger" *ngIf="form.controls['nome'].hasError('minlength')">
+                    <p class="help is-danger" *ngIf="form.controls['name'].hasError('minlength')">
                       Il campo nome deve contenere minimo 3 caratteri
                     </p>
                     <p class="help is-danger" *ngIf="
-                        !form.controls.nome.valid && form.get('nome').touched
+                        !form.controls.name.valid && form.get('name').touched
                       ">
                       Il campo è obbligatorio
                     </p>

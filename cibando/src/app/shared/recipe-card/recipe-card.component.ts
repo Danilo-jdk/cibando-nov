@@ -2,6 +2,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Recipe } from 'src/app/models/recipe.model';
 import { RecipeService } from 'src/app/services/recipe.service';
 
+import { filter, map, Observable, take } from 'rxjs';
+
 @Component({
   selector: 'app-recipe-card',
   templateUrl: './recipe-card.component.html',
@@ -13,31 +15,52 @@ export class RecipeCardComponent implements OnInit {
 
   percorsoDifficolta = "../../../../assets/images/difficolta-";
   cliccato = false;
-  ricette: Recipe[];
+  ricette: Recipe[] = [];
   page = 1;
   ricettePerPagina = 4;
-  pagingNumber = 0;
 
+  //rowsPerPageOptions: number;
+  //pagingNumber = 0;
+
+  //first: number = 0;
+
+  ricette$: Observable<Recipe[]>;
+  totRicette: Recipe[] = [];
+  totale: number;
 
   constructor(private recipeService: RecipeService) { }
 
   ngOnInit(): void {
-    this.recipeService.getRecipes().subscribe({
-      next: (res) => {
-        this.ricette = res;
-        if(this.pag == 'home'){
-          this.ricette = this.ricette.sort((a,b) => b._id - a._id).slice(0,4);
-        } else {
-          this.ricette = this.ricette.sort((a,b) => b._id - a._id);
-        }
+    if(this.pag == 'home') {
+      this.ricette$ = this.recipeService.getRecipes().pipe(
+         map(res => res.filter(ricetteFiltrate => ricetteFiltrate.difficulty < 6 )),
+         map(res => res.slice(0,4 )),
+         map(res => this.totRicette = res)
+      )
+    } else {
+      this.ricette$ = this.recipeService.getRecipes().pipe(
+        map(res => res.filter(ricetteFiltrate => ricetteFiltrate.difficulty < 6 )),
+        map(res => this.totRicette = res )
+      )
+    }
 
-      },
-      error: (e) => {
-        console.error(e)
-      }
-    })
 
-    this.pagine();
+    // this.recipeService.getRecipes().subscribe({
+    //   next: (res) => {
+    //     this.ricette = res;
+    //     if(this.pag == 'home'){
+    //       this.ricette = this.ricette.sort((a,b) => b._id - a._id).slice(0,4);
+    //     } else {
+    //       this.ricette = this.ricette.sort((a,b) => b._id - a._id);
+    //     }
+
+    //   },
+    //   error: (e) => {
+    //     console.error(e)
+    //   }
+    // })
+
+    //this.pagine();
   }
 
   inviaTitolo(titolo: string){
@@ -52,14 +75,19 @@ export class RecipeCardComponent implements OnInit {
    // this.cliccato ? (this.messaggio.emit(''), this.cliccato = false) : (this.messaggio.emit(titolo), this.cliccato = true);
   }
 
-    pagine(){
-      let tot;
-      if(this.ricette){
-        tot = this.ricette.length
-      }
+    // pagine(){
+    //   let tot;
+    //   if(this.ricette){
+    //     tot = this.ricette.length
+    //   }
 
-      this.page = 1;
-      this.pagingNumber = 0;
-      this.pagingNumber = Math.ceil(this.ricette.length/ this.ricettePerPagina / 4);
-    }
+    //   this.page = 1;
+    //   this.pagingNumber = 0;
+    //   this.pagingNumber = Math.ceil(this.ricette.length / this.ricettePerPagina / 4);
+    // }
+
+    paginate(event) {
+       event.page =event.page + 1;
+      this.page = event.page;
+  }
 }

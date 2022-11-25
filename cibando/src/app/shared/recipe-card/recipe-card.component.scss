@@ -1,4 +1,6 @@
 
+@import '../../styles/colori.scss';
+
 .container-cards {
   margin-bottom: 20px;
   display: flex;
@@ -15,7 +17,7 @@
     .card-title {
       font-weight: bold;
       font-size: 16px;
-      color: #8e210b;
+      color: $primary-color-1;
     }
 
     .card-image {
@@ -30,7 +32,7 @@
     }
 
     a.btn.btn-primary {
-      background-color: #8e210b;
+      background-color: $primary-color-1;
       border: none;
     }
   }

@@ -22,10 +22,27 @@
           <a class="nav-link">
             <fa-icon [icon]="iconaMail"></fa-icon>Contatti</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="registrazione">
-            <fa-icon [icon]="iconaRegistrati"></fa-icon>
-            Registrati</a>
+        <li class="nav-item accedi" *ngIf="!authService.isLogged()">
+          <a class="nav-link" routerLink="login">
+            <i class="pi pi-user"></i>
+            Accedi</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav" *ngIf="authService.isLogged()">
+        <li class="nav-item user">
+          <i class="pi pi-user"></i> <span class="name">Ciao {{user.name}}</span>
+        </li>
+        <li class="nav-item user">
+          <a routerLink="profilo">Profilo</a>
+        </li>
+        <li class="nav-item user">
+          <span *ngIf="user.role == 'admin'"><i class="pi pi-plus"></i> <a routerLink="ricette/nuova-ricetta">Nuova ricetta</a></span>
+        </li>
+        <li class="nav-item user">
+          <span><i class="pi pi-video"></i> <a routerLink="video">Video</a></span>
+        </li>
+        <li class="nav-item user">
+          <a href="#" (click)="logout()" class="esci">ESCI</a>
         </li>
       </ul>
       <div id="container-search">
