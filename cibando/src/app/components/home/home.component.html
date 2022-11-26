@@ -31,9 +31,12 @@
   </div>
 </section>
 <div class="ultime-ricette">
-  <h2 id="ultime">Le ultime ricette</h2>
+
   <div class="contenitore-ricette">
-    <app-recipe-card [pag]="'home'"></app-recipe-card>
+    <app-recipe-card [pag]="'home'">
+      <div style="display: block; width: 100%"><h2 id="ultime">Le ultime ricette</h2></div>
+      <div secondaIncursione style="display: block; width: 100%"><h2 id="ultime">... a presto con nuove ricette!</h2></div>
+    </app-recipe-card>
   </div>
 </div>
 

@@ -1,4 +1,5 @@
 <div class="container-cards">
+  <ng-content></ng-content>
 <div class="container-pagination" *ngIf="pag != 'home'">
   <div>
     <strong>{{ricettePerPagina}}</strong> Ricette / su un totale di <strong>{{totRicette.length}}</strong> ricette <br />pagina corrente <strong>{{page}}</strong>
@@ -28,7 +29,7 @@
 
     </div>
   </div>
-
+  <ng-content select="[secondaIncursione]"></ng-content>
   <div class="container-pagination" *ngIf="pag != 'home'">
     <!-- <ngb-pagination [collectionSize]="totRicette.length * 2 + (ricettePerPagina * 2)" [(page)]="page" aria-label="Default pagination">
     </ngb-pagination> -->
