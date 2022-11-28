@@ -32,7 +32,9 @@ body {
 //   position: relative;
 //   bottom: 0px
 // }
-
+.modal-header, .modal-footer {
+  background-color: #8e210b !important;
+}
 footer {
   height: 100px;
   width: 100%;

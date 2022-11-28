@@ -1,5 +1,5 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
@@ -11,6 +11,9 @@ import { MessageService } from 'primeng/api';
   // providers: [MessageService]
 })
 export class LoginComponent implements OnInit {
+  @Output() chiudi = new EventEmitter;
+  @Input() esegui: boolean;
+
   loginError: string = '';
   user: any;
 
@@ -21,6 +24,11 @@ export class LoginComponent implements OnInit {
      ) { }
 
   ngOnInit(): void {
+      if(this.esegui){
+        console.log('adesso è true')
+      }else {
+        console.log('adesso è false')
+      }
   }
 
   onSubmit(credenziali: any){
@@ -31,10 +39,11 @@ export class LoginComponent implements OnInit {
           if(res) {
             this.authService.saveStorage(res);
             this.messageService.add({severity:'success', summary:'Successo', detail:'Login effettuato con successo', life: 3000});
+            this.chiudi.emit(true);
 
-            setTimeout(() => {
-              this.router.navigate(['home']);
-            }, 3000)
+            // setTimeout(() => {
+            //   this.router.navigate(['home']);
+            // }, 3000)
 
           } else {
             this.loginError = "email o password errati";

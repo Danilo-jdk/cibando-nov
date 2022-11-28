@@ -44,7 +44,7 @@ import { RecipeCardComponent } from 'src/app/shared/recipe-card/recipe-card.comp
     RecipeRoutingModule,
     CommonModule
   ],
-  exports: [RecipeCardComponent]
+  exports: [RecipeCardComponent, NuovaRicettaComponent]
 })
 
 export class RecipesModule { }

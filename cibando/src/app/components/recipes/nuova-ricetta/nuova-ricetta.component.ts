@@ -56,6 +56,10 @@ export class NuovaRicettaComponent implements OnInit {
   constructor(private recipeService: RecipeService) { }
 
   ngOnInit(): void {
+    this.form.patchValue({
+      title: 'scrivi il nome della ricetta',
+      image: " qui metti l'URL"
+    })
   }
 
   onSubmit(){

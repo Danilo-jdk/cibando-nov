@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Recipe } from 'src/app/models/recipe.model';
 import { RecipeService } from 'src/app/services/recipe.service';
 
-import { filter, map, Observable, take } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-recipe-card',
@@ -21,7 +21,6 @@ export class RecipeCardComponent implements OnInit {
 
   //rowsPerPageOptions: number;
   //pagingNumber = 0;
-
   //first: number = 0;
 
   ricette$: Observable<Recipe[]>;
@@ -90,4 +89,5 @@ export class RecipeCardComponent implements OnInit {
        event.page =event.page + 1;
       this.page = event.page;
   }
+
 }

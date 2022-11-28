@@ -11,5 +11,7 @@
   </div>
 </div>
 <div *ngIf="ricette.length == 0" class="not-found">
-    Siamo spiacenti ma non ci sono ricette con: {{testo}}
+    Siamo spiacenti ma non ci sono ricette con: <strong>{{testo}}</strong>
+   <div ngNonBindable>Per far comparire le variabili in angular devi metetre la variabile nelle doppie graffe esempio {{nomeVariabile}}</div>
+
 </div>

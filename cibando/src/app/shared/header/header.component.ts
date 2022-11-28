@@ -6,6 +6,7 @@ import { faRegistered } from '@fortawesome/free-regular-svg-icons';
 import { Router } from '@angular/router';
 import { RecipeService } from 'src/app/services/recipe.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-header',
@@ -22,10 +23,13 @@ user: any;
   testo: string;
   isCollapsed = true;
 
+  esegui = false;
+
   constructor(
     private router: Router,
     private recipeService: RecipeService,
-    public authService: AuthService
+    public authService: AuthService,
+    private modalService: NgbModal
     ) { }
 
   ngOnInit(): void {
@@ -39,7 +43,7 @@ user: any;
 
   logout(){
     this.authService.logout();
-    this.router.navigate(['/login']);
+    // this.router.navigate(['/login']);
   }
 
   cerca(){
@@ -47,4 +51,21 @@ user: any;
     this.router.navigate(['ricette/result/']);
   }
 
+  chiudiModale(e){
+      this.modalService.dismissAll()
+  }
+
+  open(content: any, azioneDaEseguire?: string, id?: number, titolo?: string){
+    let idNumber = id;
+    let title = titolo;
+
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title', size: 'lg', centered: true, scrollable: true} ).result.then((res) => {
+      console.log('azione da eseguire')
+      if(azioneDaEseguire == 'esci'){
+        this.logout();
+      }
+    }).catch((res) => {
+      console.log('nessuna azione da eseguire')
+    })
+  }
 }

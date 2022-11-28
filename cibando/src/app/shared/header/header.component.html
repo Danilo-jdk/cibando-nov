@@ -23,7 +23,7 @@
             <fa-icon [icon]="iconaMail"></fa-icon>Contatti</a>
         </li>
         <li class="nav-item accedi" *ngIf="!authService.isLogged()">
-          <a class="nav-link" routerLink="login">
+          <a class="nav-link" (click)="open(modaleDue,'accedi')">
             <i class="pi pi-user"></i>
             Accedi</a>
         </li>
@@ -42,7 +42,7 @@
           <span><i class="pi pi-video"></i> <a routerLink="video">Video</a></span>
         </li>
         <li class="nav-item user">
-          <a href="#" (click)="logout()" class="esci">ESCI</a>
+          <a (click)="open(modaleUno, 'esci')" class="esci">ESCI</a>
         </li>
       </ul>
       <div id="container-search">
@@ -55,3 +55,32 @@
   </nav>
 </header>
 
+
+
+
+
+
+<ng-template #modaleUno let-modal>
+  <div class="modal-header">
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+  </div>
+  <div class="modal-body">
+    Sei sicuro di voler effettuare il logout?
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn" (click)="modal.dismiss()">ANNULLA</button>
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close()" ngbAutofocus>LOGOUT</button>
+  </div>
+</ng-template>
+
+<ng-template #modaleDue let-modal>
+  <div class="modal-header">
+  <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+  </div>
+  <div class="modal-body">
+    <app-login (chiudi)="modal.dismiss()"></app-login>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn" (click)="modal.dismiss()"  ngbAutofocus>ANNULLA</button>
+  </div>
+</ng-template>
