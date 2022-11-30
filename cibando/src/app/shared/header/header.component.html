@@ -62,25 +62,25 @@
 
 <ng-template #modaleUno let-modal>
   <div class="modal-header">
-    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+    <button type="button" class="btn-close btn-close-white" aria-label="Close" (click)="modal.dismiss()"></button>
   </div>
   <div class="modal-body">
     Sei sicuro di voler effettuare il logout?
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn" (click)="modal.dismiss()">ANNULLA</button>
-    <button type="button" class="btn btn-outline-dark" (click)="modal.close()" ngbAutofocus>LOGOUT</button>
+    <button type="button" class="btn btn-light" (click)="modal.dismiss()">ANNULLA</button>
+    <button type="button" class="btn btn-dark" (click)="modal.close()" ngbAutofocus>LOGOUT</button>
   </div>
 </ng-template>
 
 <ng-template #modaleDue let-modal>
   <div class="modal-header">
-  <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+  <button type="button" class="btn-close btn-close-white" aria-label="Close" (click)="modal.dismiss()"></button>
   </div>
   <div class="modal-body">
     <app-login (chiudi)="modal.dismiss()"></app-login>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn" (click)="modal.dismiss()"  ngbAutofocus>ANNULLA</button>
+    <button type="button" class="btn btn-light" (click)="modal.dismiss()"  ngbAutofocus>ANNULLA</button>
   </div>
 </ng-template>

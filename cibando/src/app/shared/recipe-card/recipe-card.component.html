@@ -10,7 +10,7 @@
   <p-paginator [rows]="ricettePerPagina" [totalRecords]="totRicette.length" (onPageChange)="paginate($event)" (rowsPerPageOptionsChange)="ricettePerPagina"></p-paginator>
 </div>
 
-  <div class="card" *ngFor="let ricetta of ricette$ | async | slice: (page * ricettePerPagina) - ricettePerPagina : page * ricettePerPagina">
+  <div class="card" *ngFor="let ricetta of ricette | slice: (page * ricettePerPagina) - ricettePerPagina : page * ricettePerPagina">
     <div class="card-image" [ngStyle]="{'background-image': 'url('+ ricetta.image + ')'}" (click)="inviaTitolo(ricetta.title)"></div>
     <div class="card-body">
       <h5 class="card-title">{{ricetta.title}}</h5>
